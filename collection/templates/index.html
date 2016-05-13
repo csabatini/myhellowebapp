@@ -1,11 +1,8 @@
 {% extends 'layouts/base.html' %}
 {% block title %}Homepage - {{ block.super}}{% endblock %}
 {% block content %}
-    <h1>Hello World!</h1>
-    <p>{% if  number == 6 %}
-        True
-        {% else %}
-        False
-        {% endif %}
-    </p>
+    {% for stock in stocks %}
+    <h2>{{ stock.symbol }}</h2>
+    <p>{{ stock.name }}</p>
+    {% endfor %}
 {% endblock %}
