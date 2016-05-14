@@ -3,6 +3,7 @@
     {{ stock.symbol }} - {{ block.super}}
 {% endblock %}
 {% block content %}
-    <h1>{{ stock.symbol }}</h1>
-    <p>{{ stock.name }}</p>
+<h1>{{ stock.symbol }}</h1>
+<p>{{ stock.name }}</p>
+<a href="{% url 'edit_stock' slug=stock.slug %}">Edit Stock</a>
 {% endblock %}
