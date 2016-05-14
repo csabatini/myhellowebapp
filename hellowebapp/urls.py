@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^stocks/(?P<slug>[-\w]+)/$', 'collection.views.stock_detail', name='stock_detail'),
     url(r'^stocks/(?P<slug>[-\w]+)/edit/$', 'collection.views.edit_stock', name='edit_stock'),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
