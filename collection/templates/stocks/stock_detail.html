@@ -1,0 +1,8 @@
+{% extends 'layouts/base.html' %}
+{% block title %}
+    {{ stock.symbol }} - {{ block.super}}
+{% endblock %}
+{% block content %}
+    <h1>{{ stock.symbol }}</h1>
+    <p>{{ stock.name }}</p>
+{% endblock %}
