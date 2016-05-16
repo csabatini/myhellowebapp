@@ -3,5 +3,5 @@ from collection.models import Stock
 
 class StockForm(ModelForm):
     class Meta:
-            model = Stock
-            fields = ('symbol', 'name')
+        model = Stock
+        fields = ('symbol', 'name')

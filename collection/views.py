@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import slugify
 from collection.forms import StockForm
 from collection.models import Stock
 
@@ -32,3 +33,18 @@ def edit_stock(request, slug):
         'stock': stock,
         'form': form,
     })
+
+def add_stock(request):
+    form_class = StockForm
+
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            stock = form.save(commit=False)
+            stock.user = request.user
+            stock.slug = slugify(stock.symbol)
+            stock.save()
+            return redirect('stock_detail', slug=stock.slug)
+    else:
+        form = form_class()
+    return render(request, 'stocks/add_stock.html', {'form': form})
