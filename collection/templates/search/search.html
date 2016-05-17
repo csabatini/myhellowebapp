@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+{% block title %}
+    Browse - {{ block.super }}
+{% endblock %}
+{% block content %}
+<h1>Browse Stocks{% if initial %} Starting with
+    '{{ initial|title }}'{% endif %}
+</h1>
+
+{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
+<a href="{% url 'browse_by_symbol' initial=letter %}"
+{% if initial == letter %}class="active"{% endif %}>
+    {{ letter|upper }}
+</a>
+{% endfor %}
+
+{% for s in stocks %}
+<ul>
+    <li>
+        <a href="{% url 'stock_detail' slug=s.slug %}">
+            {{ s.symbol }}
+        </a>
+    </li>
+</ul>
+{% empty %}
+<p>Sorry, no results!</p>
+{% endfor %}
+{% endblock %}

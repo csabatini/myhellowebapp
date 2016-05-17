@@ -48,3 +48,13 @@ def add_stock(request):
     else:
         form = form_class()
     return render(request, 'stocks/add_stock.html', {'form': form})
+
+def browse_by_symbol(request, initial=None):
+    # return a list of stocks starting with the initial (if given), or all stocks
+    if initial:
+        stocks = Stock.objects.filter(symbol__istartswith=initial)
+        stocks = stocks.order_by('symbol')
+    else:
+        stocks = Stock.objects.all().order_by('symbol')
+
+    return render(request, 'search/search.html', {'stocks': stocks, 'initial': initial})
