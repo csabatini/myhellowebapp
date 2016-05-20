@@ -1,0 +1,2 @@
+Django==1.8.11
+django-registration==2.0.4
